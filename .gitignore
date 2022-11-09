@@ -170,3 +170,5 @@ gradle-app.setting
 # End of https://www.toptal.com/developers/gitignore/api/kotlin,intellij,gradle
 build
 gpm.json
+node_modules
+package-lock.json

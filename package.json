@@ -1,0 +1,15 @@
+{
+  "bin": {"ccm": "jdeploy-bundle/jdeploy.js"},
+  "author": "theapache64",
+  "description": "CLI helper to analyze Compose Compiler Metrics (CCM) data",
+  "main": "index.js",
+  "preferGlobal": true,
+  "repository": "https://github.com/theapache64/ccm-analyzer",
+  "version": "1.0.0",
+  "jdeploy": {"jar": "out/artifacts/ccm_analyzer_main_jar/ccm-analyzer.main.jar"},
+  "dependencies": {"shelljs": "^0.7.5"},
+  "license": "ISC",
+  "name": "ccm-analyzer",
+  "files": ["jdeploy-bundle"],
+  "scripts": {"test": "echo \"Error: no test specified\" && exit 1"}
+}
