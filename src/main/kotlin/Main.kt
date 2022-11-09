@@ -10,8 +10,18 @@ import kotlin.io.path.writeText
 fun main(args: Array<String>) {
     val userDir = File(System.getProperty("user.dir"))
     val joSum = JSONObject()
+    println("Looking for CCM json...")
     userDir.walk()
-        .filter { it.name.endsWith("release-module.json") }.forEach {
+        .filter {
+            val isModuleJson = it.name.endsWith("release-module.json")
+            val relPath = it.absolutePath.replace(userDir.absolutePath, "")
+            if(isModuleJson){
+                println("\r➡️ $relPath")
+            }else{
+                print("\r🔍$relPath")
+            }
+            isModuleJson
+        }.forEach {
             val joRoot = JSONObject(it.readText())
             val keys = joRoot.keys()
             for (key in keys) {
@@ -23,6 +33,14 @@ fun main(args: Array<String>) {
                 joSum.put(key, currentValue + joRoot.getInt(key))
             }
         }
+
+    print("\r☑️ Done")
+
+    if (joSum.isEmpty) {
+        println("Couldn't find any CCM files")
+        return
+    }
+
 
     println("✨NEW")
     println("-------")
@@ -56,14 +74,15 @@ fun main(args: Array<String>) {
     }
 
 
-    if(outputJson.exists()){
-        val shouldReplace = InputUtils.getString("Do you want to replace the output? (y/n)", true).equals("y",ignoreCase = true)
-        if(shouldReplace){
+    if (outputJson.exists()) {
+        val shouldReplace =
+            InputUtils.getString("Do you want to replace the output? (y/n)", true).equals("y", ignoreCase = true)
+        if (shouldReplace) {
             println("Replaced")
             // Replacing JSON
             outputJson.writeText(joSum.toString(2))
         }
-    }else{
+    } else {
         println("Saved")
         // Saving new JSON
         outputJson.writeText(joSum.toString(2))
