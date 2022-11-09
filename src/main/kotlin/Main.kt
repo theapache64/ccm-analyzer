@@ -16,9 +16,7 @@ fun main(args: Array<String>) {
             val isModuleJson = it.name.endsWith("release-module.json")
             val relPath = it.absolutePath.replace(userDir.absolutePath, "")
             if(isModuleJson){
-                println("\r➡️ $relPath")
-            }else{
-                print("\r🔍$relPath")
+                println("➡️ $relPath")
             }
             isModuleJson
         }.forEach {
