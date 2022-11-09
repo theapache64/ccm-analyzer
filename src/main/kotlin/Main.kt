@@ -24,8 +24,14 @@ fun main(args: Array<String>) {
             }
         }
 
+    println("✨NEW")
+    println("-------")
+    println(joSum.toString(2))
+    println("---------------------------")
+
     val outputJson = userDir.toPath() / "build" / "ccm-analyzer.json"
     if (outputJson.exists()) {
+
         // Calculating difference
         val joCalculated = JSONObject()
         val joOld = JSONObject(outputJson.readText())
@@ -33,15 +39,34 @@ fun main(args: Array<String>) {
         for (key in keys) {
             val oldValue = joOld.getInt(key)
             val newValue = joSum.getInt(key)
-            val diff = oldValue - newValue
+            val diff = newValue - oldValue
             joCalculated.put(key, diff)
         }
 
+        println("👴🏻OLD")
+        println("------")
+        println(joOld.toString(2))
+        println("---------------------------")
+
+
+        println(" 🔀 DIFF")
+        println("---------")
         println(joCalculated.toString(2))
+        println("---------------------------")
     }
 
 
+    if(outputJson.exists()){
+        val shouldReplace = InputUtils.getString("Do you want to replace the output? (y/n)", true).equals("y",ignoreCase = true)
+        if(shouldReplace){
+            println("Replaced")
+            // Replacing JSON
+            outputJson.writeText(joSum.toString(2))
+        }
+    }else{
+        println("Saved")
+        // Saving new JSON
+        outputJson.writeText(joSum.toString(2))
+    }
 
-    // Saving new JSON
-    outputJson.writeText(joSum.toString(2))
 }
