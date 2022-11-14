@@ -89,14 +89,14 @@ ccm-analyzer
 ---------
 {
   "totalComposables": 0,
-  "skippableComposables": 269,
+  "skippableComposables": 269, // 🚀 We've increased skippable composable count by 269
   "totalArguments": 0,
   "totalLambdas": 0,
   "knownStableArguments": 0,
   "unknownStableArguments": 777,
   "readonlyComposables": 0,
   "totalGroups": 91,
-  "inferredUnstableClasses": -94,
+  "inferredUnstableClasses": -94,  // 🚀 We've reduced inferredUnstableClasses count by 94
   "staticArguments": 0,
   "markedStableClasses": -1,
   "memoizedLambdas": 0,
